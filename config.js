@@ -32,5 +32,5 @@ window.VERSOPRO_SITE = {
   email: "",
 
   // Link de download do programa (opcional, para quem já comprou)
-  linkDownload: ""
+  linkDownload: "/baixar"
 };
