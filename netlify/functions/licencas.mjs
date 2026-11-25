@@ -11,7 +11,7 @@ export default async (req) => {
     if (m) return await licenca(st, req, m[1]);
     if (p === '/api/minha-chave') return await minhaChave(st, req);
     if (p === '/api/admin') return await admin(st, req);
-    if (p === '/api/ping') return json({ ok: true, versao: 1 });
+    if (p === '/api/ping') return json({ ok: true, versao: 2, senhaPainel: !!process.env.ADMIN_SENHA, senhaWebhook: !!process.env.WEBHOOK_SEGREDO });
     return json({ erro: 'rota' }, 404);
   } catch (e) {
     console.error(e);

@@ -18,7 +18,7 @@
 <script>
 (function(){var S="",L=[],$=function(i){return document.getElementById(i)};
 function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function api(o){o.senha=S;return fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)}).then(function(r){return r.json()})}
+function api(o){o.senha=S;return fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)}).then(function(r){return r.text().then(function(t){try{return JSON.parse(t)}catch(e){return{ok:false,erro:r.status==404?"O servidor de licenças não está no ar (erro 404). O site precisa ser publicado pelo GitHub, não pelo Netlify Drop.":"Erro "+r.status+" no servidor."}}})})}
 function msg(t,e){$("m").className="msg"+(e?" err":"");$("m").textContent=t||""}
 function dt(s){try{return new Date(s).toLocaleString("pt-BR")}catch(e){return s}}
 function pinta(){var q=$("bus").value.trim().toLowerCase(),l=L.filter(function(x){return!q||[x.email,x.nome,x.chave,x.pedido].join(" ").toLowerCase().indexOf(q)>=0});
@@ -27,7 +27,7 @@ $("tb").innerHTML=l.map(function(x){return"<tr><td><b>"+esc(x.nome||"(sem nome)"
 (x.status=="ativa"?'<button class="mini" data-a="cancelar" data-k="'+x.chave+'">Cancelar</button>':'<button class="mini" data-a="reativar" data-k="'+x.chave+'">Reativar</button>')+
 '<button class="mini" data-a="liberarPcs" data-k="'+x.chave+'" title="Use quando o cliente perdeu o PC e não consegue desativar">Liberar PCs</button><button class="mini" data-a="limite" data-k="'+x.chave+'">Mudar nº de PCs</button></td></tr>"}).join("")}
 function carrega(){msg("Carregando…");api({acao:"listar"}).then(function(d){if(!d.ok){msg(d.erro,1);$("login").hidden=false;$("pn").hidden=true;return}L=d.lista;$("login").hidden=true;$("pn").hidden=false;msg("");pinta()}).catch(function(){msg("Sem conexão.",1)})}
-$("ent").onclick=function(){S=$("s").value;carrega()};$("s").onkeydown=function(e){if(e.key=="Enter")$("ent").click()};
+$("ent").onclick=function(){S=$("s").value.trim();carrega()};$("s").onkeydown=function(e){if(e.key=="Enter")$("ent").click()};
 $("bus").oninput=pinta;
 $("cr").onclick=function(){api({acao:"criar",nome:$("cn").value,email:$("ce").value,limite:$("cl").value}).then(function(d){if(d.ok){msg("Chave criada: "+d.lic.chave);carrega()}else msg(d.erro,1)})};
 $("tb").onclick=function(e){var b=e.target.closest("button");if(!b)return;var a=b.dataset.a,o={acao:a,chave:b.dataset.k};
