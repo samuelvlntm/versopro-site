@@ -33,7 +33,7 @@ svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-lin
 .btn-pri{color:#fff;background:linear-gradient(100deg,#8b5cff,#5a7dff 55%,#3d9bff);background-size:160% 100%;box-shadow:0 10px 30px -8px rgba(110,90,255,.7),inset 0 1px 0 rgba(255,255,255,.25)}
 .btn-pri:hover{transform:translateY(-2px);background-position:100% 0;box-shadow:0 16px 40px -8px rgba(110,90,255,.85),inset 0 1px 0 rgba(255,255,255,.3)}
 .btn-pri:active{transform:translateY(0) scale(.98)}
-.btn-sec{color:var(--texto);background:rgba(255,255,255,.06);border:1px solid var(--linha);backdrop-filter:blur(8px)}
+.btn-sec{color:var(--texto);background:rgba(255,255,255,.08);border:1px solid var(--linha)}
 .btn-sec:hover{background:rgba(255,255,255,.11);transform:translateY(-2px)}
 .btn-bloco{width:100%}
 
@@ -54,7 +54,7 @@ svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-lin
 
 /* ===== aurora ===== */
 .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:deriva 18s ease-in-out infinite alternate}
+.aurora i{position:absolute;border-radius:50%;opacity:.55;animation:deriva 18s ease-in-out infinite alternate;will-change:transform;-webkit-mask:radial-gradient(closest-side,#000 15%,transparent);mask:radial-gradient(closest-side,#000 15%,transparent)}
 .aurora i:nth-child(1){width:620px;height:620px;background:#6b3bff;left:-180px;top:-160px}
 .aurora i:nth-child(2){width:520px;height:520px;background:#1f6fff;right:-140px;top:60px;animation-duration:22s;animation-delay:-6s}
 .aurora i:nth-child(3){width:420px;height:420px;background:#ff7a2e;left:40%;bottom:-260px;opacity:.28;animation-duration:26s}
@@ -80,7 +80,7 @@ h1{font-size:clamp(2.4rem,5vw,4.1rem);line-height:1.05;letter-spacing:-.025em;fo
 /* cena do hero */
 .hero-cena{position:relative;aspect-ratio:1/.86;perspective:1600px}
 .telao{position:absolute;left:4%;right:0;top:0;transform:rotateY(-9deg) rotateX(3deg);transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.telao-luz{position:absolute;inset:-12% -8%;background:radial-gradient(closest-side,rgba(139,92,255,.55),transparent 70%);filter:blur(30px);z-index:-1;animation:respira 6s ease-in-out infinite}
+.telao-luz{position:absolute;inset:-12% -8%;background:radial-gradient(closest-side,rgba(139,92,255,.55),transparent 70%);z-index:-1;animation:respira 6s ease-in-out infinite}
 @keyframes respira{50%{opacity:.6;transform:scale(1.05)}}
 .telao-tela{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 40px 80px -20px rgba(0,0,0,.8)}
 .telao-tela img,.video-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.1s ease,transform 6s linear}
@@ -96,7 +96,7 @@ h1{font-size:clamp(2.4rem,5vw,4.1rem);line-height:1.05;letter-spacing:-.025em;fo
 .flutua{animation:flutua 7s ease-in-out infinite}
 .flutua.f2{animation-duration:8s;animation-delay:-3s}
 @keyframes flutua{50%{transform:translateY(-12px)}}
-.chip-flut{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;padding:.55em .95em;border-radius:12px;background:rgba(22,20,39,.85);border:1px solid var(--linha);backdrop-filter:blur(10px);box-shadow:0 14px 30px -10px rgba(0,0,0,.7);white-space:nowrap;animation:flutua 6s ease-in-out infinite}
+.chip-flut{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;padding:.55em .95em;border-radius:12px;background:rgba(22,20,39,.94);border:1px solid var(--linha);box-shadow:0 14px 30px -10px rgba(0,0,0,.7);white-space:nowrap;animation:flutua 6s ease-in-out infinite}
 .chip-flut svg{color:var(--laranja)}
 .chip-flut.c1{left:-4%;top:40%;animation-delay:-2s}
 .chip-flut.c2{right:22%;bottom:-3%;animation-delay:-4s}
@@ -292,6 +292,8 @@ h3{font-size:1.25rem;font-weight:700;letter-spacing:-.01em}
   .final{padding:96px 16px}
 }
 
+/* animações paradas quando a seção está fora da tela (site.js) */
+.parado,.parado *,.parado *::before,.parado *::after{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .js .rv,.js .hero-cena{opacity:1;transform:none}
