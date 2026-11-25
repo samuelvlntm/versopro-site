@@ -25,7 +25,7 @@ function pinta(){var q=$("bus").value.trim().toLowerCase(),l=L.filter(function(x
 $("tot").textContent=L.length+" licenças · "+L.filter(function(x){return x.status=="ativa"}).length+" ativas";
 $("tb").innerHTML=l.map(function(x){return"<tr><td><b>"+esc(x.nome||"(sem nome)")+"</b><br>"+esc(x.email)+"<br><small>"+dt(x.criada)+"</small></td><td><code>"+esc(x.chave)+"</code></td><td>"+esc(x.pedido)+"<br><small>"+esc(x.origem)+"</small></td><td>"+x.inst.length+" de "+x.limite+(x.inst.length?"<br><small>"+x.inst.map(function(i){return esc(i.nome)}).join("<br>")+"</small>":"")+"</td><td class=\"st-"+x.status+"\">"+x.status+"</td><td>"+
 (x.status=="ativa"?'<button class="mini" data-a="cancelar" data-k="'+x.chave+'">Cancelar</button>':'<button class="mini" data-a="reativar" data-k="'+x.chave+'">Reativar</button>')+
-'<button class="mini" data-a="liberarPcs" data-k="'+x.chave+'" title="Use quando o cliente perdeu o PC e não consegue desativar">Liberar PCs</button><button class="mini" data-a="limite" data-k="'+x.chave+'">Mudar nº de PCs</button></td></tr>"}).join("")}
+'<button class="mini" data-a="liberarPcs" data-k="'+x.chave+'" title="Use quando o cliente perdeu o PC e não consegue desativar">Liberar PCs</button><button class="mini" data-a="limite" data-k="'+x.chave+'">Mudar nº de PCs</button></td></tr>'}).join("")}
 function carrega(){msg("Carregando…");api({acao:"listar"}).then(function(d){if(!d.ok){msg(d.erro,1);$("login").hidden=false;$("pn").hidden=true;return}L=d.lista;$("login").hidden=true;$("pn").hidden=false;msg("");pinta()}).catch(function(){msg("Sem conexão.",1)})}
 $("ent").onclick=function(){S=$("s").value.trim();carrega()};$("s").onkeydown=function(e){if(e.key=="Enter")$("ent").click()};
 $("bus").oninput=pinta;
