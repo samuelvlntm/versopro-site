@@ -116,6 +116,14 @@
   });
 
   /* ---------- FAQ: abre um de cada vez ---------- */
+  /* ---------- pausa animações fora da tela (deixa a rolagem leve) ---------- */
+  if ("IntersectionObserver" in window){
+    var ioP = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.target.classList.toggle("parado", !e.isIntersecting); });
+    }, { rootMargin: "100px 0px" });
+    $$(".hero, .sec, .final").forEach(function(el){ ioP.observe(el); });
+  }
+
   var faqs = $$(".faq details");
   faqs.forEach(function(d){
     d.addEventListener("toggle", function(){ if (d.open) faqs.forEach(function(o){ if (o !== d) o.open = false; }); });
