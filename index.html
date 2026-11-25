@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VersoPro · Programa de projeção para igrejas</title>
+<meta name="description" content="Projete letras, Bíblia, fotos e vídeos na tela da igreja com fundos automáticos. Funciona sem internet, usa o celular como câmera e controle remoto. Licença vitalícia.">
+<meta name="theme-color" content="#0b0a14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VersoPro · Letras e Bíblia na tela da sua igreja">
+<meta property="og:description" content="Slides lindos em um clique, funciona sem internet e você paga uma vez só.">
+<meta property="og:image" content="img/og.jpg">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/icone-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gmarca" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a06bff"/><stop offset="1" stop-color="#3d9bff"/></linearGradient>
+  </defs>
+  <symbol id="i-musica" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-livro" viewBox="0 0 24 24"><path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/></symbol>
+  <symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M2 2l20 20"/><path d="M8.5 16.4a5 5 0 0 1 7 0"/><path d="M5 12.9a10 10 0 0 1 5.2-2.8"/><path d="M19 12.9a10 10 0 0 0-2.3-1.6"/><path d="M2 8.8a15 15 0 0 1 4.2-2.6"/><path d="M22 8.8A15 15 0 0 0 11 5"/><circle cx="12" cy="20" r="1"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2"/></symbol>
+  <symbol id="i-remoto" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v4M10 9h4"/><circle cx="12" cy="16" r="1"/></symbol>
+  <symbol id="i-enviar" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></symbol>
+  <symbol id="i-pincel" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h2M14 14h2M8 18h2M14 18h2"/></symbol>
+  <symbol id="i-camadas" viewBox="0 0 24 24"><path d="M12 2l10 5-10 5L2 7z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></symbol>
+  <symbol id="i-importar" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></symbol>
+  <symbol id="i-salvar" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></symbol>
+  <symbol id="i-ia" viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9z"/><path d="M5 15l.7 1.6L7 17l-1.3.5L5 19l-.7-1.5L3 17l1.3-.4z"/></symbol>
+  <symbol id="i-telas" viewBox="0 0 24 24"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6M9 14v4"/><rect x="17" y="8" width="5" height="10" rx="1"/></symbol>
+  <symbol id="i-obs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M4.2 16.5l5.2-3M19.8 16.5l-5.2-3"/></symbol>
+  <symbol id="i-voz" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-chave" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L21 2M17 6l3 3M15 8l2 2"/></symbol>
+  <symbol id="i-carrinho" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L22 8H6"/></symbol>
+  <symbol id="i-whats" viewBox="0 0 24 24"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-1 .8c-1-.4-1.8-1.2-2.2-2.2l.8-1-1-2z"/></symbol>
+  <symbol id="i-windows" viewBox="0 0 24 24"><path d="M3 5.5l7.5-1v7H3zM12 4.3L21 3v8.5h-9zM3 12.5h7.5v7L3 18.5zM12 12.5h9V21l-9-1.3z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+  <symbol id="i-paleta" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-2a2 2 0 0 0-1.5 3.3A1.8 1.8 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.3"/><circle cx="12" cy="7" r="1.3"/><circle cx="16.5" cy="10.5" r="1.3"/></symbol>
+</svg>
+
+<!-- ============ TOPO ============ -->
+<header class="topo" id="topo">
+  <div class="topo-in">
+    <a class="marca" href="#inicio" aria-label="VersoPro, início">
+      <img src="img/logo.png" alt="" width="40" height="40">
+      <span><b>Verso<em>Pro</em></b><small>Projeção de Bíblia e Hinos</small></span>
+    </a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#video">Demonstração</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#celular">Celular</a>
+      <a href="#preco">Preço</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn-pri btn-sm" data-comprar href="#preco"><svg><use href="#i-carrinho"/></svg>Comprar</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grade-fundo" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div class="hero-txt">
+      <p class="selo rv"><span class="ponto"></span> Programa de projeção para igrejas · Windows</p>
+      <h1 class="rv">Letras e Bíblia na tela da sua igreja, <span class="grad">lindas em um&nbsp;clique.</span></h1>
+      <p class="lead rv">O VersoPro monta os slides sozinho, com fundos que combinam com cada louvor. Funciona sem internet, transforma o celular em câmera e controle remoto, e você paga <b>uma vez só</b>.</p>
+      <div class="acoes rv">
+        <a class="btn btn-pri btn-lg" data-comprar href="#preco"><svg><use href="#i-chave"/></svg>Comprar licença vitalícia</a>
+        <a class="btn btn-sec btn-lg" href="#video"><svg><use href="#i-play"/></svg>Ver demonstração</a>
+      </div>
+      <ul class="garantias rv">
+        <li><svg><use href="#i-check"/></svg>Pague uma vez, use para sempre</li>
+        <li><svg><use href="#i-check"/></svg>Funciona sem internet</li>
+        <li><svg><use href="#i-check"/></svg>Windows 10 e 11</li>
+      </ul>
+    </div>
+
+    <div class="hero-cena" id="cena" aria-label="Prévia do VersoPro projetando letras">
+      <div class="telao">
+        <div class="telao-luz" aria-hidden="true"></div>
+        <div class="telao-tela" id="telao">
+          <img src="img/slide-1.webp" data-tag="#fogo" alt="Slide projetado: Renova o meu coração" class="on">
+          <img src="img/slide-0.webp" data-tag="#mar" alt="Slide projetado: Mesmo quando o vento sobe" loading="lazy">
+          <img src="img/slide-3.webp" data-tag="#céu" alt="Slide projetado com fundo de vídeo: É preciso esperar" loading="lazy">
+          <img src="img/slide-4.webp" data-tag="#bíblia" alt="Versículo projetado: Salmos 23:1" loading="lazy">
+          <img src="img/slide-2.webp" data-tag="#deserto" alt="Slide projetado: Caminhei por terra seca" loading="lazy">
+        </div>
+        <span class="telao-rot">2ª tela · projetor</span>
+      </div>
+      <div class="note flutua">
+        <div class="note-tela"><img src="img/tela-letras.webp" alt="Tela do VersoPro com a lista de letras e as páginas da música" width="1600" height="840"></div>
+        <div class="note-base"></div>
+      </div>
+      <div class="cel flutua f2">
+        <div class="cel-tela"><img src="img/cel-tctl.webp" alt="Controle remoto do VersoPro no celular" width="541" height="1101"></div>
+      </div>
+      <div class="chip-flut c1"><svg><use href="#i-tag"/></svg><span id="chipTag">#fogo</span>&nbsp;· fundo escolhido sozinho</div>
+      <div class="chip-flut c2"><svg><use href="#i-remoto"/></svg>Próximo pelo celular</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAIXA ============ -->
+<div class="faixa" aria-hidden="true">
+  <div class="faixa-trilho">
+    <span>Letras</span><i>✦</i><span>Bíblia</span><i>✦</i><span>Fotos e vídeos</span><i>✦</i><span>Câmera do celular</span><i>✦</i><span>OBS na rede</span><i>✦</i><span>VersoStudio</span><i>✦</i><span>Harpa Cristã</span><i>✦</i><span>Holyrics</span><i>✦</i><span>Sem internet</span><i>✦</i>
+    <span>Letras</span><i>✦</i><span>Bíblia</span><i>✦</i><span>Fotos e vídeos</span><i>✦</i><span>Câmera do celular</span><i>✦</i><span>OBS na rede</span><i>✦</i><span>VersoStudio</span><i>✦</i><span>Harpa Cristã</span><i>✦</i><span>Holyrics</span><i>✦</i><span>Sem internet</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ============ VÍDEO ============ -->
+<section class="sec" id="video">
+  <div class="cab rv">
+    <p class="kicker">Veja funcionando</p>
+    <h2>Do louvor ao versículo, <span class="grad">sem travar o culto.</span></h2>
+    <p>Um minuto de demonstração com o programa de verdade, do jeito que ele roda no computador da igreja.</p>
+  </div>
+  <div class="video-caixa rv" id="videoCaixa">
+    <div class="video-espera" id="videoEspera">
+      <div class="video-slides" aria-hidden="true">
+        <img src="img/slide-0.webp" alt="" class="on" loading="lazy"><img src="img/slide-1.webp" alt="" loading="lazy"><img src="img/slide-4.webp" alt="" loading="lazy"><img src="img/slide-3.webp" alt="" loading="lazy">
+      </div>
+      <button class="video-play" id="videoPlay" type="button" aria-label="Assistir à demonstração"><svg><use href="#i-play"/></svg></button>
+      <p class="video-aviso" id="videoAviso">Vídeo de demonstração em breve</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECURSOS ============ -->
+<section class="sec" id="recursos">
+  <div class="cab rv">
+    <p class="kicker">Tudo num programa só</p>
+    <h2>Feito para quem opera a projeção <span class="grad">no meio do culto.</span></h2>
+    <p>Botões grandes, atalhos rápidos e nada de configurar slide por slide.</p>
+  </div>
+
+  <article class="rec rv">
+    <div class="rec-txt">
+      <span class="ic"><svg><use href="#i-musica"/></svg></span>
+      <h3>Letras com fundos automáticos</h3>
+      <p>Cadastre ou importe a música e o VersoPro cria as páginas, destaca as palavras fortes e escolhe o fundo pelo tema da letra. Fala de fogo? Fundo de fogo. Fala de mar? Fundo de mar.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>#tags por tema: #fogo, #céu, #mar, #cruz, #esperança e as suas próprias</li>
+        <li><svg><use href="#i-check"/></svg>Use suas fotos e vídeos em loop como fundo</li>
+        <li><svg><use href="#i-check"/></svg>Modo “Seguir louvor”: ouve o canto e sugere a próxima página</li>
+      </ul>
+    </div>
+    <figure class="janela"><div class="janela-bar"><i></i><i></i><i></i><span>VersoPro · Letras</span></div><img src="img/tela-letras2.webp" alt="Tela de Letras do VersoPro com fundo de vídeo" loading="lazy" width="1600" height="840"></figure>
+  </article>
+
+  <article class="rec inv rv">
+    <div class="rec-txt">
+      <span class="ic"><svg><use href="#i-livro"/></svg></span>
+      <h3>Bíblia na tela em segundos</h3>
+      <p>Digite duas letras e o livro aparece: M+T abre Mateus, J+O abre João. Capítulo, Enter, versículo, Enter, e já está projetado.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>Várias traduções e busca por palavra</li>
+        <li><svg><use href="#i-check"/></svg>Assistente de voz: ouve o pregador citar a referência e oferece projetar</li>
+        <li><svg><use href="#i-check"/></svg>Fundo do versículo combinando com o tema da igreja</li>
+      </ul>
+    </div>
+    <figure class="janela"><div class="janela-bar"><i></i><i></i><i></i><span>VersoPro · Bíblia</span></div><img src="img/tela-biblia.webp" alt="Tela da Bíblia do VersoPro projetando Salmos 23" loading="lazy" width="1600" height="900"></figure>
+  </article>
+
+  <article class="rec rv">
+    <div class="rec-txt">
+      <span class="ic"><svg><use href="#i-pincel"/></svg></span>
+      <h3>VersoStudio: seu mini Canva</h3>
+      <p>Crie avisos, boas-vindas, aniversariantes e letras com visual próprio. Fundos, figurinhas, emojis, GIFs, formas e efeitos em camadas, e o que você criar já aparece pronto para projetar.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>Modelos prontos de slide e de letra</li>
+        <li><svg><use href="#i-check"/></svg>Textos com neon, contorno, degradê e animação</li>
+        <li><svg><use href="#i-check"/></svg>“Aplicar visual em todas” as páginas de uma vez</li>
+      </ul>
+    </div>
+    <figure class="janela"><div class="janela-bar"><i></i><i></i><i></i><span>VersoPro · VersoStudio</span></div><img src="img/tela-versostudio.webp" alt="Editor VersoStudio montando a letra Céu Aberto com fundo próprio" loading="lazy" width="1600" height="900"></figure>
+  </article>
+
+  <article class="rec inv rv">
+    <div class="rec-txt">
+      <span class="ic"><svg><use href="#i-calendario"/></svg></span>
+      <h3>Culto organizado na ordem certa</h3>
+      <p>Monte a programação de cada dia da semana: boas-vindas, louvores, leitura, pregação e encerramento. Na hora, é só seguir a lista e apertar o play.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>Programação por dia, com horário</li>
+        <li><svg><use href="#i-check"/></svg>Duplique o culto de domingo para a quarta</li>
+        <li><svg><use href="#i-check"/></svg>Fotos, vídeos, YouTube, slides e tela compartilhada em “Apresentar”</li>
+      </ul>
+    </div>
+    <figure class="janela"><div class="janela-bar"><i></i><i></i><i></i><span>VersoPro · Cultos</span></div><img src="img/tela-cultos.webp" alt="Programação do culto de quarta-feira no VersoPro" loading="lazy" width="1600" height="900"></figure>
+  </article>
+
+  <article class="rec rv">
+    <div class="rec-txt">
+      <span class="ic"><svg><use href="#i-camadas"/></svg></span>
+      <h3>Biblioteca com fundos, fontes e efeitos</h3>
+      <p>Fundos em imagem e vídeo, animações, paletas, fontes, efeitos e texturas, tudo separado por #tag. Traga os seus arquivos e o VersoPro passa a usá-los nas letras.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>Fontes já instaladas no programa, funcionam offline</li>
+        <li><svg><use href="#i-check"/></svg>Importe sua própria fonte, efeito ou textura</li>
+        <li><svg><use href="#i-check"/></svg>Crie #tags com as palavras da sua igreja</li>
+      </ul>
+    </div>
+    <figure class="janela"><div class="janela-bar"><i></i><i></i><i></i><span>VersoPro · Biblioteca</span></div><img src="img/tela-biblioteca.webp" alt="Biblioteca do VersoPro com fundos e vídeos" loading="lazy" width="1600" height="900"></figure>
+  </article>
+</section>
+
+<!-- ============ CELULAR ============ -->
+<section class="sec celular" id="celular">
+  <div class="aurora suave" aria-hidden="true"><i></i><i></i></div>
+  <div class="cel-grid">
+    <div class="cel-txt">
+      <div class="cab esq rv">
+        <p class="kicker">App VersoPro Mobile · Android</p>
+        <h2>O celular vira <span class="grad">câmera e controle remoto.</span></h2>
+        <p>Conecte pelo Wi-Fi da igreja, sem internet e sem cabo. Digite o PIN que aparece no computador e pronto.</p>
+      </div>
+      <div class="cel-itens">
+        <div class="cel-item rv"><span class="ic"><svg><use href="#i-cam"/></svg></span><div><h3>VersoCam</h3><p>Use a câmera do celular no telão e no OBS, com zoom, foco, exposição, ISO e balanço de branco.</p></div></div>
+        <div class="cel-item rv"><span class="ic"><svg><use href="#i-remoto"/></svg></span><div><h3>Controle remoto</h3><p>Passe letras, versículos, fotos e slides de qualquer lugar da igreja. Escolha a música e projete a Bíblia pelo celular.</p></div></div>
+        <div class="cel-item rv"><span class="ic"><svg><use href="#i-enviar"/></svg></span><div><h3>Envie fotos e vídeos</h3><p>Na galeria, toque em Compartilhar › VersoPro Mobile. As fotos chegam no computador prontas para projetar.</p></div></div>
+      </div>
+    </div>
+    <div class="cel-palco rv" aria-hidden="true">
+      <div class="cel p1"><div class="cel-tela"><img src="img/cel-tini.webp" alt="" loading="lazy" width="541" height="1101"></div></div>
+      <div class="cel p2"><div class="cel-tela"><img src="img/cel-tctl.webp" alt="" loading="lazy" width="541" height="1101"></div></div>
+      <div class="cel p3"><div class="cel-tela"><img src="img/cel-tarq.webp" alt="" loading="lazy" width="541" height="1101"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OBS ============ -->
+<section class="sec" id="obs">
+  <div class="obs-grid">
+    <div class="obs-cena rv" aria-hidden="true">
+      <div class="obs-janela">
+        <div class="obs-bar"><span class="ao-vivo">● AO VIVO</span><span>Transmissão</span></div>
+        <div class="obs-video">
+          <div class="palco-luzes"><i></i><i></i><i></i><i></i></div>
+          <div class="palco-chao"></div>
+          <div class="obs-terco"><b>O céu se abre sobre nós</b><span>a glória enche a casa</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cab esq rv">
+      <p class="kicker">Transmissão ao vivo</p>
+      <h2>Letra e versículo na live, <span class="grad">direto no OBS.</span></h2>
+      <p>O VersoPro gera um link para colocar no OBS como “Navegador”. A letra aparece por cima da câmera, com fundo transparente, pela rede local. Sem plugin e sem conta.</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>Projetor na 2ª tela abre sozinho, em tela cheia</li>
+        <li><svg><use href="#i-check"/></svg>Câmera do celular também entra no OBS</li>
+        <li><svg><use href="#i-check"/></svg>Tela preta, tela de descanso e ocultar texto num toque</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAIS RECURSOS ============ -->
+<section class="sec" id="mais">
+  <div class="cab rv">
+    <p class="kicker">E ainda</p>
+    <h2>Detalhes que fazem <span class="grad">diferença no domingo.</span></h2>
+  </div>
+  <div class="cards">
+    <div class="card rv"><span class="ic"><svg><use href="#i-importar"/></svg></span><h3>Importa do Holyrics</h3><p>Traz as músicas do Holyrics que já estão no PC, ou de um backup no pen drive, sem mexer em nada lá.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-musica"/></svg></span><h3>Harpa e hinários</h3><p>Importe coleções inteiras de hinos de uma vez, com número, título e coro repetido depois de cada estrofe.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-wifi-off"/></svg></span><h3>Funciona sem internet</h3><p>Ativou uma vez, usa offline. A internet da igreja caiu? O culto continua.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-salvar"/></svg></span><h3>Backup num arquivo só</h3><p>Letras, cultos, fundos e configurações num único arquivo para guardar ou levar para outro PC.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-ia"/></svg></span><h3>IA no seu computador</h3><p>Organize letras, crie fundos e traduza ao vivo usando IA local, sem mandar nada para fora. Opcional, para PCs com placa de vídeo.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-voz"/></svg></span><h3>Ouve o culto</h3><p>Reconhece referências bíblicas faladas e acompanha o louvor para sugerir a próxima página.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-telas"/></svg></span><h3>Dois monitores fácil</h3><p>Escolha em qual tela vai o projetor. Desconectou o cabo e ligou de novo? Ele volta sozinho.</p></div>
+    <div class="card rv"><span class="ic"><svg><use href="#i-paleta"/></svg></span><h3>Do jeito da sua igreja</h3><p>Cores do tema, fontes, estilos de letra e animações para deixar a projeção com a cara do seu ministério.</p></div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section class="sec" id="como">
+  <div class="cab rv">
+    <p class="kicker">Como funciona a compra</p>
+    <h2>Em poucos minutos <span class="grad">está projetando.</span></h2>
+  </div>
+  <ol class="passos">
+    <li class="rv"><span class="num">1</span><h3>Compre a licença</h3><p>Pagamento seguro pela loja. Você recebe a chave de ativação no e-mail.</p></li>
+    <li class="rv"><span class="num">2</span><h3>Instale no Windows</h3><p>Baixe o instalador e siga os passos. Não precisa ser administrador.</p></li>
+    <li class="rv"><span class="num">3</span><h3>Ative e use</h3><p>Cole a chave uma vez com internet. Depois disso, funciona offline.</p></li>
+  </ol>
+</section>
+
+<!-- ============ PREÇO ============ -->
+<section class="sec" id="preco">
+  <div class="preco-grid">
+    <div class="cab esq rv">
+      <p class="kicker">Licença vitalícia</p>
+      <h2>Sem mensalidade. <span class="grad">É seu para sempre.</span></h2>
+      <p>Uma chave por igreja, para usar em até dois computadores, por exemplo o da projeção e o da transmissão. Trocou de PC? Dá para transferir a licença.</p>
+    </div>
+    <div class="plano rv">
+      <div class="plano-brilho" aria-hidden="true"></div>
+      <p class="plano-nome">VersoPro · Licença vitalícia</p>
+      <p class="plano-preco"><s id="precoAntigo" hidden></s><b id="valor">Preço em breve</b></p>
+      <p class="plano-parc" id="parcelas" hidden></p>
+      <p class="plano-unica">Pagamento único</p>
+      <ul class="lista">
+        <li><svg><use href="#i-check"/></svg>1 igreja, até 2 computadores</li>
+        <li><svg><use href="#i-check"/></svg>Licença transferível para outro PC</li>
+        <li><svg><use href="#i-check"/></svg>Funciona sem internet depois de ativar</li>
+        <li><svg><use href="#i-check"/></svg>App VersoPro Mobile (Android) incluso</li>
+        <li><svg><use href="#i-check"/></svg>VersoStudio, Bíblia, letras e OBS inclusos</li>
+      </ul>
+      <a class="btn btn-pri btn-lg btn-bloco" data-comprar href="#preco"><svg><use href="#i-carrinho"/></svg>Comprar agora</a>
+      <p class="plano-req"><svg><use href="#i-windows"/></svg>Windows 10 ou 11 · 64 bits</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DÚVIDAS ============ -->
+<section class="sec" id="duvidas">
+  <div class="cab rv">
+    <p class="kicker">Dúvidas</p>
+    <h2>Perguntas frequentes</h2>
+  </div>
+  <div class="faq">
+    <details class="rv"><summary>Precisa de internet para usar?</summary><p>Só para ativar a licença na primeira vez. Depois o VersoPro funciona sem internet, inclusive o celular, que conversa com o computador pelo Wi-Fi local. De tempos em tempos ele confere a licença quando encontra internet, mas isso nunca trava um culto.</p></details>
+    <details class="rv"><summary>Posso instalar em quantos computadores?</summary><p>Uma licença vale para uma igreja e pode ficar ativa em até dois computadores ao mesmo tempo, como o da projeção e o da transmissão.</p></details>
+    <details class="rv"><summary>E se eu trocar de computador?</summary><p>A licença é transferível: desative no computador antigo e ative no novo com a mesma chave.</p></details>
+    <details class="rv"><summary>Funciona no Mac ou no Linux?</summary><p>Por enquanto o VersoPro é para Windows 10 e 11 (64 bits).</p></details>
+    <details class="rv"><summary>O app do celular funciona no iPhone?</summary><p>O app VersoPro Mobile é para Android. No iPhone dá para usar a câmera e o controle pelo navegador, com menos ajustes de câmera.</p></details>
+    <details class="rv"><summary>Já uso o Holyrics. Perco minhas músicas?</summary><p>Não. O VersoPro encontra as músicas do Holyrics no computador (ou num backup no pen drive) e importa tudo, sem alterar os arquivos do Holyrics.</p></details>
+    <details class="rv"><summary>Preciso de um computador potente?</summary><p>Não. Um computador comum com Windows 10 ou 11 dá conta da projeção. Só os recursos de IA local, que são opcionais, pedem placa de vídeo dedicada.</p></details>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="final-in rv">
+    <img src="img/logo.png" alt="" width="84" height="84" class="final-logo">
+    <h2>O próximo culto pode <span class="grad">ficar mais bonito.</span></h2>
+    <p>Licença vitalícia, sem mensalidade, funcionando até sem internet.</p>
+    <div class="acoes centro">
+      <a class="btn btn-pri btn-lg" data-comprar href="#preco"><svg><use href="#i-chave"/></svg>Comprar licença vitalícia</a>
+      <a class="btn btn-sec btn-lg" data-whats href="#" hidden><svg><use href="#i-whats"/></svg>Tirar dúvida no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="rodape-in">
+    <a class="marca" href="#inicio"><img src="img/logo.png" alt="" width="32" height="32"><span><b>Verso<em>Pro</em></b></span></a>
+    <p class="rodape-links">
+      <a href="#recursos">Recursos</a><a href="#preco">Preço</a><a href="#duvidas">Dúvidas</a>
+      <a data-download href="#" hidden>Baixar o programa</a>
+      <a href="chave.html">Já comprei: pegar minha chave</a>
+      <a data-email href="#" hidden>E-mail</a>
+      <a data-whats href="#" hidden>WhatsApp</a>
+    </p>
+    <p class="rodape-copy">© <span id="ano">2026</span> VersoPro · Projeção de Bíblia e Hinos</p>
+  </div>
+</footer>
+
+<a class="whats-flut" data-whats href="#" hidden aria-label="Falar no WhatsApp"><svg><use href="#i-whats"/></svg></a>
+
+<script src="site.js"></script>
+</body>
+</html>

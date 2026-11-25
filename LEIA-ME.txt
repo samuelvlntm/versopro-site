@@ -1,0 +1,28 @@
+SITE DE VENDAS DO VERSOPRO + SERVIDOR DE LICENÇAS
+=================================================
+
+O site agora tem uma parte "de servidor" (pasta netlify/functions) que:
+ - recebe o aviso de compra da Kiwify e cria a chave da igreja (até 2 PCs);
+ - ativa, confere e libera a chave quando o programa pede;
+ - mostra a chave para o comprador em chave.html (e-mail + nº do pedido);
+ - tem um painel só seu em admin.html (lista, cria cortesia, cancela, libera PCs).
+As chaves ficam guardadas no próprio Netlify (Netlify Blobs), grátis.
+
+IMPORTANTE: o "arrastar a pasta" (Netlify Drop) publica só as páginas, NÃO o servidor.
+Por isso o site passa a ser publicado a partir de um repositório do GitHub
+(o Netlify publica sozinho a cada mudança).
+
+VARIÁVEIS SECRETAS (Netlify › seu site › Site configuration › Environment variables)
+ WEBHOOK_SEGREDO  invente uma senha longa (só letras e números). Vai no fim do endereço do webhook.
+ ADMIN_SENHA      senha para entrar em admin.html
+ KIWIFY_TOKEN     (opcional) o "token" que a Kiwify mostra no webhook
+ LIMITE_PCS       (opcional) padrão 2
+Nunca mande essas senhas para ninguém, nem no chat.
+
+ENDEREÇOS
+ Webhook da Kiwify:  https://SEU-SITE.netlify.app/api/kiwify?s=WEBHOOK_SEGREDO
+ Pegar a chave:      https://SEU-SITE.netlify.app/chave.html
+ Painel:             https://SEU-SITE.netlify.app/admin.html
+ Teste:              https://SEU-SITE.netlify.app/api/ping   (deve mostrar {"ok":true})
+
+O QUE TROCAR NO SITE (config.js): linkCompra (checkout da Kiwify), preco, video, whatsapp...

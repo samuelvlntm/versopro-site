@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pegar minha chave · VersoPro</title><link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="estilo.css"><link rel="stylesheet" href="pagina.css"><meta name="robots" content="noindex"></head>
+<body><div class="cx">
+<div class="cab"><img src="img/logo.png" alt=""><span>Verso<span class="grad">Pro</span></span></div>
+<h1>Pegar minha chave de licença</h1>
+<p class="sub">Use o e-mail da compra e o número do pedido que está no e-mail de confirmação da Kiwify.</p>
+<form id="f">
+<label for="e">E-mail usado na compra</label><input id="e" type="email" autocomplete="email" required>
+<label for="p">Número do pedido</label><input id="p" autocomplete="off" required placeholder="ex.: 7Xk2aB9">
+<button class="b" id="b">Mostrar minha chave</button>
+</form>
+<div class="msg" id="m"></div>
+<div id="r"></div>
+<ol><li>Baixe e instale o VersoPro.</li><li>Na tela de ativação, cole a chave e clique em <b>Ativar</b> (precisa de internet só nessa hora).</li><li>A chave vale para <b>até 2 computadores</b> da mesma igreja. Para trocar de PC: Configurações › Licença › <b>Desativar neste PC</b>, e ative no novo.</li></ol>
+</div>
+<script>
+(function(){var q=new URLSearchParams(location.search),f=document.getElementById("f"),m=document.getElementById("m"),r=document.getElementById("r"),b=document.getElementById("b");
+if(q.get("email"))document.getElementById("e").value=q.get("email");if(q.get("pedido"))document.getElementById("p").value=q.get("pedido");
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+f.onsubmit=function(ev){ev.preventDefault();b.disabled=true;m.className="msg";m.textContent="Procurando…";r.innerHTML="";
+fetch("/api/minha-chave",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:document.getElementById("e").value,pedido:document.getElementById("p").value})})
+.then(function(x){return x.json()}).then(function(d){b.disabled=false;if(!d.ok){m.className="msg err";m.textContent=d.erro||"Não foi possível.";return}
+m.textContent=(d.nome?"Olá, "+d.nome.split(" ")[0]+"! ":"")+"Esta é a sua chave ("+d.pcs+" de "+d.limite+" computadores em uso):";
+r.innerHTML='<div class="chave"><code id="k">'+esc(d.chave)+'</code><button type="button" id="cp">Copiar chave</button></div>';
+document.getElementById("cp").onclick=function(){navigator.clipboard.writeText(d.chave).then(function(){document.getElementById("cp").textContent="Copiada ✓"})}})
+.catch(function(){b.disabled=false;m.className="msg err";m.textContent="Sem conexão. Tente de novo."})}})();
+</script></body></html>
